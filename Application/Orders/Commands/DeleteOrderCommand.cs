@@ -25,7 +25,7 @@ namespace Application.Orders.Commands
 
             public async Task<bool> Handle(DeleteOrderCommand request, CancellationToken cancellationToken)
             {
-                var result = await _context.Orders.DeleteOneAsync(Builders<Order>.Filter.Eq("OrderId", request.Id), cancellationToken);
+                var result = await _context.Orders.DeleteOneAsync(el => el.OrderId == request.Id, cancellationToken);
 
                 return Convert.ToBoolean(result.DeletedCount);
             }

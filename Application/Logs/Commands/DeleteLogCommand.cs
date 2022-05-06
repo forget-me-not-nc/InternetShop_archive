@@ -19,7 +19,7 @@ namespace Application.Logs.Commands
 
             public async Task<bool> Handle(DeleteLogCommand request, CancellationToken cancellationToken)
             {
-                var result = await _context.Logs.DeleteOneAsync(el => el.LogId.Equals(request.Id), cancellationToken);
+                var result = await _context.Logs.DeleteOneAsync(el => el.LogId == request.Id, cancellationToken);
 
                 return Convert.ToBoolean(result.DeletedCount);
             }
